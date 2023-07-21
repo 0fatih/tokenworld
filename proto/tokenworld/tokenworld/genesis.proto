@@ -1,0 +1,12 @@
+syntax = "proto3";
+package tokenworld.tokenworld;
+
+import "gogoproto/gogo.proto";
+import "tokenworld/tokenworld/params.proto";
+
+option go_package = "tokenworld/x/tokenworld/types";
+
+// GenesisState defines the tokenworld module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+package tokenworld.tokenworld;
+
+option go_package = "tokenworld/x/tokenworld/types";
+
+// Msg defines the Msg service.
+service Msg {}
