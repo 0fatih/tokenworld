@@ -10,6 +10,7 @@ option go_package = "tokenworld/x/tokenworld/types";
 // Msg defines the Msg service.
 service Msg {
   rpc Mint (MsgMint) returns (MsgMintResponse);
+  rpc Burn (MsgBurn) returns (MsgBurnResponse);
 }
 message MsgMint {
            string                   creator = 1;
@@ -17,4 +18,11 @@ message MsgMint {
 }
 
 message MsgMintResponse {}
+
+message MsgBurn {
+           string                   creator = 1;
+  repeated cosmos.base.v1beta1.Coin amount  = 2 [(gogoproto.nullable) = false];
+}
+
+message MsgBurnResponse {}
 
