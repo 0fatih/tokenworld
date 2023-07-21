@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"tokenworld/docs"
 
 	autocliv1 "cosmossdk.io/api/cosmos/autocli/v1"
 	reflectionv1 "cosmossdk.io/api/cosmos/reflection/v1"
@@ -113,10 +114,10 @@ import (
 	tokenworldmodule "tokenworld/x/tokenworld"
 	tokenworldmodulekeeper "tokenworld/x/tokenworld/keeper"
 	tokenworldmoduletypes "tokenworld/x/tokenworld/types"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	appparams "tokenworld/app/params"
-	"tokenworld/docs"
 )
 
 const (
@@ -188,6 +189,7 @@ var (
 		govtypes.ModuleName:            {authtypes.Burner},
 		ibctransfertypes.ModuleName:    {authtypes.Minter, authtypes.Burner},
 		// this line is used by starport scaffolding # stargate/app/maccPerms
+		tokenworldmoduletypes.ModuleName: {authtypes.Minter, authtypes.Burner},
 	}
 )
 
@@ -524,6 +526,7 @@ func New(
 		keys[tokenworldmoduletypes.StoreKey],
 		keys[tokenworldmoduletypes.MemStoreKey],
 		app.GetSubspace(tokenworldmoduletypes.ModuleName),
+		app.BankKeeper,
 	)
 	tokenworldModule := tokenworldmodule.NewAppModule(appCodec, app.TokenworldKeeper, app.AccountKeeper, app.BankKeeper)
 

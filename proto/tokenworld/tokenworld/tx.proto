@@ -1,7 +1,28 @@
 syntax = "proto3";
+
 package tokenworld.tokenworld;
+
+import "gogoproto/gogo.proto";
+import "cosmos/base/v1beta1/coin.proto";
 
 option go_package = "tokenworld/x/tokenworld/types";
 
 // Msg defines the Msg service.
-service Msg {}
+service Msg {
+  rpc Mint (MsgMint) returns (MsgMintResponse);
+  rpc Burn (MsgBurn) returns (MsgBurnResponse);
+}
+message MsgMint {
+           string                   creator = 1;
+  repeated cosmos.base.v1beta1.Coin amount  = 2 [(gogoproto.nullable) = false];
+}
+
+message MsgMintResponse {}
+
+message MsgBurn {
+           string                   creator = 1;
+  repeated cosmos.base.v1beta1.Coin amount  = 2 [(gogoproto.nullable) = false];
+}
+
+message MsgBurnResponse {}
+
