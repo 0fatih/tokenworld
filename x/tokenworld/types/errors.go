@@ -3,10 +3,11 @@ package types
 // DONTCOVER
 
 import (
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	errors "cosmossdk.io/errors"
 )
 
 // x/tokenworld module sentinel errors
 var (
-	ErrSample = sdkerrors.Register(ModuleName, 1100, "sample error")
+	ErrMint = errors.Register(ModuleName, 1100, "mint coins failed")
+	ErrSendMint = errors.Register(ModuleName, 1101, "send minted coins failed")
 )
